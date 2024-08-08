@@ -1,4 +1,4 @@
-def num_ways(m,b,X):
+def num_ways(m,n,X):
     dp = [[0]*(X+1) for _ in range(n+1)]
 
     dp[0][0] = 1
@@ -20,7 +20,7 @@ print(num_ways(faces, throws,target_sum))
 #given no of intergers
 import java.util.*;
 class Solution{
-    publis static void main(String[] args){
+    public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int[] arr = new int[n];
