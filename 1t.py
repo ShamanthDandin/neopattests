@@ -50,3 +50,28 @@ class Solution{
         return totalSum;
     }
 }
+
+
+
+#given an array
+def max_alternating_sum(arr):
+    n = len(arr)
+    if n == 0;
+        return 0
+    up = [0]*n
+    down = [0]*n
+    up[0] = arr[0]
+    down[0] = float('-inf')
+    for i in range(1,n):
+        up[i] = arr[i]
+        down[i] = arr[i]
+        for j in range(i):
+            if arr[i]>arr[j]:
+                up[i] = max(up[i],down[j]+arr[i])
+            elif arr[i]<arr[j]:
+                down[i] = max(down[i],up[j]+arr[i])
+    return max(max(up),max(down))
+n = int(input())
+arr = list(map(int , input().split()))
+result = max_alternating_sum(arr)
+print(result)
