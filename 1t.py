@@ -56,7 +56,7 @@ class Solution{
 #given an array
 def max_alternating_sum(arr):
     n = len(arr)
-    if n == 0;
+    if n == 0:
         return 0
     up = [0]*n
     down = [0]*n
