@@ -54,7 +54,7 @@ int main(){
 
 
 
-// You are using GCC
+
 //Justify
 #include <bits/stdc++.h>
 using namespace std;
