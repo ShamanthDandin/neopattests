@@ -1,77 +1,130 @@
-def num_ways(m,n,X):
-    dp = [[0]*(X+1) for _ in range(n+1)]
-
-    dp[0][0] = 1
-
-    for i in range(1, n+1):
-        for j in range(1, X+1):
-            dp[i][j] = 0
-            for k in range(1, m+1):
-                if j>=k:
-                    dp[i][j] += dp[i-1][j-k]
-    return dp[n][X]
-
-faces, throws, target_sum = map(int,input().split())
-
-print(num_ways(faces, throws,target_sum))
-#dice
-
-
-#given no of intergers
-import java.util.*;
-class Solution{
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] arr = new int[n];
-        for(int i = 0; i < n; i++){
-            arr[i] = sc.nextInt();
-        }
-        System.out.println(minSubset(arr,n));
-
-    }
-    static int minSubset(int[] arr, int n){
-        int totalSum = Arrays.stream(arr).sum();
-        boolean[] dp = new boolean[totalSum/2+1];
-        dp[0] = true;
-        for (int num : arr){
-            for(int j = totalSum/2; j>=num; j--){
-                dp[j] = dp[j] || dp[j-num];
+class Solution {
+public:
+    vector<string> fullJustify(vector<string>& words, int maxWidth) {
+        vector<string>res;
+        int curr = 0, oglen = 0;
+        vector<string>aux;
+        //stores the words for the current row
+        for(string s : words)
+        {
+            int l = s.length();
+            // checking if the word can be taken in the current row or not
+            if(maxWidth-curr>l) 
+            {
+                curr+=s.length()+1;
+                oglen+=s.length();
+                aux.push_back(s);
             }
-        }
-        for (int j = totalSum/2; j>=0; j--){
-            if(dp[j]){
-                return totalSum-2*j;
+            else if(maxWidth-curr==l)
+            {
+                curr+=s.length();
+                oglen+=s.length();
+                aux.push_back(s);
             }
-    
-             
+            else
+            {
+                curr = 0;
+                string help = "";
+                int totspaces = maxWidth-oglen; // total spaces needed to fit in the row
             
+                oglen=0;
+                int pos = aux.size()-1;
+                //SIMULATION
+                for(string x : aux)
+                {
+                    int spaces=0;
+                    if(pos!=0)
+                        spaces = (ceil)(totspaces*1.00/pos);
+                    string sp="";
+                    for(int i=0;i<spaces;i++)
+                        sp+=" ";
+                    help+=x+sp;
+                    totspaces-=spaces;
+                    pos--;
+                }
+                aux.clear();
+                help=help.substr(0,maxWidth);
+                int extra=maxWidth-help.length();
+                for(int i=0;i<extra;i++)
+                    help+=" ";
+                res.push_back(help);
+
+                aux.push_back(s);
+                curr+=s.length()+1;
+                oglen+=s.length();
+            }
         }
-        return totalSum;
-    }
+        string help = "";
+        for(string x : aux)
+        {
+            help+=x+" ";
+        }
+        int spaces=maxWidth-help.length();
+        for(int i=0;i<spaces;i++)
+            help+=" ";
+        help = help.substr(0, maxWidth);
+        res.push_back(help);
+        return res;
+    }
+};
+//max width
+
+
+    
+
+//charlie
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+int n;
+cin>>n;
+int arr[n];
+for(int i=0;i<n;i++){
+cin>>arr[i];
+}
+int ans=0;
+for(int i=0;i<n;i++){
+int cnt=0, sum1=0, sum2=0;
+for（int j=0;j<n;j++)｛
+if(j!=i)
+if(cnt%2==0){
+sum1+=arr[j];
+}
+else {
+sum2+=arr[j];
+}
+cnt++;
+}
+}
+if(sum1== sum2){
+ans++;
+}
+}
+cout<<ans<<end1;
 }
 
 
 
-#given an array
-def max_alternating_sum(arr):
-    n = len(arr)
-    if n == 0:
-        return 0
-    up = [0]*n
-    down = [0]*n
-    up[0] = arr[0]
-    down[0] = float('-inf')
-    for i in range(1,n):
-        up[i] = arr[i]
-        down[i] = arr[i]
-        for j in range(i):
-            if arr[i]>arr[j]:
-                up[i] = max(up[i],down[j]+arr[i])
-            elif arr[i]<arr[j]:
-                down[i] = max(down[i],up[j]+arr[i])
-    return max(max(up),max(down))
-n = int(input())
-arr = list(map(int , input().split()))
-result = max_alternating_sum(arr)
-print(result)
+//barber
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    vector<int> v(n),ans(11,0);
+    for(int i=0;i<n;i++){
+        cin>>v[i];
+    }
+    for(int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        for(int j=v[i];j<=x;j++){
+            ans[j]++;
+        }
+    }
+    int maxi=0;
+    for(int i=1;i<=10;i++){
+        maxi=max(maxi,ans[i]);
+    }
+    cout<<maxi<<endl;
+}
