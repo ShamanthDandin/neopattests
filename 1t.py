@@ -1,32 +1,27 @@
 //charlie
 #include<bits/stdc++.h>
 using namespace std;
-int main(){
-int n;
-cin>>n;
-int arr[n];
-for(int i=0;i<n;i++){
-cin>>arr[i];
-}
-int ans=0;
-for(int i=0;i<n;i++){
-int cnt=0, sum1=0, sum2=0;
-for（int j=0;j<n;j++)｛
-if(j!=i)
-if(cnt%2==0){
-sum1+=arr[j];
-}
-else {
-sum2+=arr[j];
-}
-cnt++;
-}
-}
-if(sum1== sum2){
-ans++;
-}
-}
-cout<<ans<<end1;
+int main() {
+    int n ;
+    cin >> n;
+    int arr[n];
+    for(int i = 0 ; i < n;i++) cin >> arr[i];
+    int ans = 0;
+    for(int i = 0 ; i < n ; i++) {
+        int cnt = 0 , sum1 = 0 , sum2 = 0;
+        for(int j = 0 ; j < n; j++) {
+            if(j != i) {
+                if(cnt % 2 == 0) sum1 += arr[j];
+             else {
+                sum2 += arr[j];
+             }
+            cnt++;
+            }
+        }
+        if(sum1 == sum2) ans++;
+    }
+    cout << ans << endl;
+    return 0;
 }
 //charlie end
 
