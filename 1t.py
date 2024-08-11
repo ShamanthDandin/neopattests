@@ -4,11 +4,11 @@ public:
         vector<string>res;
         int curr = 0, oglen = 0;
         vector<string>aux;
-        //stores the words for the current row
+        
         for(string s : words)
         {
             int l = s.length();
-            // checking if the word can be taken in the current row or not
+           
             if(maxWidth-curr>l) 
             {
                 curr+=s.length()+1;
@@ -25,11 +25,11 @@ public:
             {
                 curr = 0;
                 string help = "";
-                int totspaces = maxWidth-oglen; // total spaces needed to fit in the row
+                int totspaces = maxWidth-oglen;
             
                 oglen=0;
                 int pos = aux.size()-1;
-                //SIMULATION
+           
                 for(string x : aux)
                 {
                     int spaces=0;
