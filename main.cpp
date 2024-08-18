@@ -1,4 +1,5 @@
 //vowel conso
+
 #include<iostream>
 #include<cctype>
 
@@ -9,18 +10,18 @@ int main()
     string input;
 getline(cin,input);
 int vow = 0,cons=0,digits=0,sp=0;
-for(char c:input){
+for(char c: input){
 if(isdigit(c)){
 digits++;
 }
 else if(isalpha(c)){
 char lowerC=tolower(c);
-if(lowerC == 'a' || lowerC =='e' || lowerC = 'i' || lowerC =='o' || lowerC=='u'){
+if(lowerC == 'a' || lowerC =='e' || lowerC =='i' || lowerC =='o' || lowerC=='u'){
 vow++;
 }
 else
 {
-    cons++
+    cons++;
 }
 }
 else{
@@ -31,6 +32,7 @@ cout <<"Vowels: "<<vow<<'\n';
 cout <<"Consonants: "<<cons<<'\n';
 cout <<"Digits: "<<digits<<'\n';
 cout <<"Special Characters: "<<sp<<'\n';
+}
 //
 
 //Nanda start 
