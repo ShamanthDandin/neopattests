@@ -1,89 +1,59 @@
-//sophia
-import java.util.*;
-class Solution{
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        int m = sc.nextInt();
-        int n = sc.nextInt();
-        int[][] arr = new int[m][n];
-        for(int i = 0;i<n;i++){
-            for(int j = 0;j<n;j++){
-                arr[i][j] = sc.nextInt();
-            }
-        }
-        int sum = 0;
-        int i = 0,j = 0;
-        while(i<m && j<n){
-            sum = sum + arr[i][j];
-            i++;
-            j++;
-        }
-        System.out.println(sum);
-    }
-}
-//sophia end
+//vowel conso
+#include<iostream>
+#include<cctype>
 
-//rohit
-#include <bits/stdc++.h>
 using namespace std;
 
 int main()
-
 {
-int m,n;
-cin >> m >>n;
-vector<vector<int>> matrix(m,vector<int>(n));
-for(int i=0;i<m;i++){
-for(int j=0;j<n;j++){
-    cin>>matrix[i][j];
+    string input;
+getline(cin,input);
+int vow = 0,cons=0,digits=0,sp=0;
+for(char c:input){
+if(isdigit(c)){
+digits++;
+}
+else if(isalpha(c)){
+char lowerC=tolower(c);
+if(lowerC == 'a' || lowerC =='e' || lowerC = 'i' || lowerC =='o' || lowerC=='u'){
+vow++;
+}
+else
+{
+    cons++
 }
 }
-for(int i=0;i<m;i++){
-if(i%2==0){
-for(int j=0;j<n;j++){
-cout<<matrix[i][j]<<" ";
+else{
+    sp++;
 }
-} else{
-for(int j=n-1;j>=0;j--){
-cout<<matrix[i][j]<<" ";
-        }
-    }
 }
-return 0;
-}
+cout <<"Vowels: "<<vow<<'\n';
+cout <<"Consonants: "<<cons<<'\n';
+cout <<"Digits: "<<digits<<'\n';
+cout <<"Special Characters: "<<sp<<'\n';
+//
 
-//sandeep
-#include<iostream> 
-#include<vector> 
-using namespace std; 
+//Nanda start 
+#include <stdio.h>
+#include<string.h>
+
 int main() {
+    char str[51];
+    scanf("%s",str);
+    for(int i=strlen(str)-1;i>=0;i--)
+        printf("%c",str[i]);
 
-int n,m;
-
-cin>>n;
-
-vector<int> part(n);
-
-for(int i=0;i<n;i++) {
-
-cin>>part[i]; 
+    return 0;
 }
 
-cin >>m;
-
-m=m%n;
-
-vector<int> rot(n);
-
-for(int i=0;i<n;i++) {  
-rot[(i+m)%n]=part[i];
-} 
-
-for(int i=0;i<n;i++) {
-    cout<<rot[i]<<" ";
- } 
-
-cout<<'\n';
-
-return 0;
+//sarah start
+import java.util.*;
+class Solution{
+    public static void main(String[] args){
+        Scanner sc= new Scanner(System.in);
+        String a=sc.nextLine();
+        String b=sc.nextLine();
+        String c=sc.nextLine();
+        System.out.println(a.replace(b,c));
+    }
 }
