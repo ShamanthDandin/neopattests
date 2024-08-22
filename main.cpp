@@ -69,7 +69,7 @@ break;
 }
 }
 if(!found){
-printf("No majority candidate found.")
+printf("No majority candidate found.");
     }else{
 printf("%d",found);
 }
