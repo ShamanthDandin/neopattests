@@ -1,61 +1,76 @@
-//vowel conso
+//sorted int array
+import java.util.*;
 
-#include<iostream>
-#include<cctype>
-
-using namespace std;
-
-int main()
-{
-    string input;
-getline(cin,input);
-int vow = 0,cons=0,digits=0,sp=0;
-for(char c: input){
-if(isdigit(c)){
-digits++;
+class Solution{
+ public static void main(String[] args){
+     Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+int[] arr = new int[n];
+for(int i = 0;i < n;i++){
+arr[i] = sc.nextInt();
 }
-else if(isalpha(c)){
-char lowerC=tolower(c);
-if(lowerC == 'a' || lowerC =='e' || lowerC =='i' || lowerC =='o' || lowerC=='u'){
-vow++;
-}
-else
-{
-    cons++;
-}
-}
+int target = sc.nextInt();
+int idx = Arrays.binarySearch(arr,target);
+if(idx>=0){
+System.out.println("Element"+target+"found at index"+idx);
+} 
 else{
-    sp++;
+System.out.println("Element"+target+"not found in the array");
 }
 }
-cout <<"Vowels: "<<vow<<'\n';
-cout <<"Consonants: "<<cons<<'\n';
-cout <<"Digits: "<<digits<<'\n';
-cout <<"Special Characters: "<<sp<<'\n';
 }
-//
+//sorted int array
 
-//Nanda start 
-#include <stdio.h>
-#include<string.h>
 
-int main() {
-    char str[51];
-    scanf("%s",str);
-    for(int i=strlen(str)-1;i>=0;i--)
-        printf("%c",str[i]);
-
-    return 0;
-}
-
-//sarah start
+//price
 import java.util.*;
 class Solution{
-    public static void main(String[] args){
-        Scanner sc= new Scanner(System.in);
-        String a=sc.nextLine();
-        String b=sc.nextLine();
-        String c=sc.nextLine();
-        System.out.println(a.replace(b,c));
-    }
+public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+int n = sc.nextInt();
+int[] arr = new int[n];
+for(int i = 0;i<n;i++){
+arr[i] = sc.nextInt();
+}
+for(int i = 0; i < n-1;i++){
+int ptr = i+1;
+while(ptr != n){
+if(arr[ptr]<arr[i]) break;
+ptr++;
+}
+if(ptr!=n)
+{
+arr[i]-=arr[ptr];
+}
+}
+for(int i = 0; i<n;i++){
+System.out.print(arr[i]+" ");
+}
+}
+}
+
+//Election
+#include<stdio.h>
+#define MAX 100
+int main(){
+    int n;
+    scanf("%d",&n);
+int arr[n];
+int count[MAX] = {0};
+for(int i = 0;i< n;i++){
+scanf("%d",&arr[i]);
+count[arr[i]]++;
+}
+int found = 0;
+for(int i = 0;i < MAX; i++){
+if(count[i] > n-2){
+found = i;
+break;
+}
+}
+if(!found){
+printf("No majority candidate found.")
+    }else{
+printf("%d",found);
+}
 }
