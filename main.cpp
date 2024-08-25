@@ -1,76 +1,60 @@
-//sorted int array
-import java.util.*;
+//Data entered in the list
+#include<bits/stdc++.h>
+using namespace std;
 
-class Solution{
- public static void main(String[] args){
-     Scanner sc = new Scanner(System.in);
-    int n = sc.nextInt();
-int[] arr = new int[n];
-for(int i = 0;i < n;i++){
-arr[i] = sc.nextInt();
-}
-int target = sc.nextInt();
-int idx = Arrays.binarySearch(arr,target);
-if(idx>=0){
-System.out.println("Element"+target+"found at index"+idx);
-} 
-else{
-System.out.println("Element"+target+"not found in the array");
-}
-}
-}
-//sorted int array
-
-
-//price
-import java.util.*;
-class Solution{
-public static void main(String[] args){
-    Scanner sc = new Scanner(System.in);
-int n = sc.nextInt();
-int[] arr = new int[n];
-for(int i = 0;i<n;i++){
-arr[i] = sc.nextInt();
-}
-for(int i = 0; i < n-1;i++){
-int ptr = i+1;
-while(ptr != n){
-if(arr[ptr]<arr[i]) break;
-ptr++;
-}
-if(ptr!=n)
-{
-arr[i]-=arr[ptr];
-}
-}
-for(int i = 0; i<n;i++){
-System.out.print(arr[i]+" ");
-}
-}
-}
-
-//Election
-#include<stdio.h>
-#define MAX 100
 int main(){
-    int n;
-    scanf("%d",&n);
+ int n; cin >> n;
 int arr[n];
-int count[MAX] = {0};
-for(int i = 0;i< n;i++){
-scanf("%d",&arr[i]);
-count[arr[i]]++;
+cout << "Data entered in the list:\n";
+for(int i = 0;i < n;i++) cin >> arr[i], printf("node %d : %d\n",i+1,arr[i]);
+int pos; cin>>pos;
+if(pos > n) print("Invalid position. Try again.");
+else{
+cout << "After deletion the new list:\n";
+int c = 1;
+for(int i = 0; i < n;i++){
+if(i != pos-1){
+printf("node %d: %d\n",c++,arr[i]);
 }
-int found = 0;
-for(int i = 0;i < MAX; i++){
-if(count[i] > n-2){
-found = i;
-break;
 }
 }
-if(!found){
-printf("No majority candidate found.");
-    }else{
-printf("%d",found);
 }
+
+
+//Before swap
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+ int n; cin >> n;
+int arr[n];
+cout << "Before Swap: ";
+for(int i = 0;i< n;i++) cin >> arr[i], cout<<arr[i]<<" ";
+
+cout<<"\nAfter Swap: ";
+cout<<arr[n-1]<<" ";
+for(int i = 1; i < n-1;i++) cout<<arr[i]<< " ";
+cout << arr[0];
+}
+
+
+//original linked list
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;cin>>n;
+    int arr[n];
+    cout<<"original linked list: ";
+    for(int i=0;i<n;i++) cin>>arr[i];
+    int num;cin>>num;
+    for(int i=n-1;i>=0;i--) cout<<arr[i]<<" -> ";
+    cout<<"NULL\n";
+    cout<<"After deleting node after "<<num<<": ";
+    cout<<arr[n-1]<<" -> ";
+    for(int i=n-2;i>=0;i--){
+        if(arr[i+1]!= num){
+            cout<<arr[i]<<" -> ";
+        }
+    }
+    cout<<"NULL";
 }
