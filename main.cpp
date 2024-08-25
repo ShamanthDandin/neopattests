@@ -8,7 +8,7 @@ int arr[n];
 cout << "Data entered in the list:\n";
 for(int i = 0;i < n;i++) cin >> arr[i], printf("node %d : %d\n",i+1,arr[i]);
 int pos; cin>>pos;
-if(pos > n) print("Invalid position. Try again.");
+if(pos > n) printf("Invalid position. Try again.");
 else{
 cout << "After deletion the new list:\n";
 int c = 1;
