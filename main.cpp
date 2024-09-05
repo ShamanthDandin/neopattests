@@ -1,8 +1,8 @@
 //matrix output question
-def create(v,e,edges):
+def create(v,e):
     am=[[0 for _ in range(v)] for _ in range(v)]
-    for edge in edges:
-        u,w=edge
+    for _ in range(e):
+        u,w=map(int,input().split())
         am[u-1][w-1]=1
         am[w-1][u-1]=1
     return am
@@ -11,8 +11,7 @@ def Print(matrix):
         print(' '.join(map(str,row)))
 v=int(input())
 e=int(input())
-edges=[tuple(map(int,input.split())) for _ in range(e)]
-am=create(v,e,edges)
+am=create(v,e)
 Print(am)
 
 //Visited Node 
