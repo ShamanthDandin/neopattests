@@ -40,7 +40,7 @@ def main():
     bfs_res=bfs(graph,start_node,v)
     for node in bfs_res:
         print(node)
-if _name=="main_":
+if __name__=="__main__":
     main()
 
 
@@ -57,7 +57,7 @@ def construct_graph(V, edges):
 def Print(adjacency_list):
     for vertex, neighbors in enumerate(adjacency_list):
         if neighbors:
-            neighbors_str = '->'.join(map(str, neighbors))
+            neighbors_str = '->'.join(map(str, neighbors)) + '->'
         else:
             neighbors_str = ''
         print(f"Vertex {vertex}: {neighbors_str}")
@@ -73,5 +73,5 @@ def main():
     adjacency_list = construct_graph(V, edges)
     Print(adjacency_list)
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
