@@ -78,14 +78,14 @@ import java.util.Scanner;
 class Solution {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in); // Initialize scanner
-        int n = sc.nextInt(); // Read the number of lines to input
-        sc.nextLine(); // Consume the newline character after the integer input
+        Scanner sc = new Scanner(System.in); 
+        int n = sc.nextInt();
+        sc.nextLine(); 
         
         for (int i = 0; i < n; i++) {
-            System.out.println(sc.nextLine()); // Read and print each line
+            System.out.println(sc.nextLine()); 
         }
 
-        sc.close(); // Close the scanner
+        sc.close();
     }
 }
