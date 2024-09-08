@@ -1,77 +1,91 @@
-//matrix output question
-def create(v,e):
-    am=[[0 for _ in range(v)] for _ in range(v)]
-    for _ in range(e):
-        u,w=map(int,input().split())
-        am[u-1][w-1]=1
-        am[w-1][u-1]=1
-    return am
-def Print(matrix):
-    for row in matrix:
-        print(' '.join(map(str,row)))
-v=int(input())
-e=int(input())
-am=create(v,e)
-Print(am)
+#include <iostream>
+#include <vector>
+using namespace std;
+int main() {
+    int n;
+    cin >> n;
+    vector<int> weights(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> weights[i];
+    }
 
-//Visited Node 
-from collections import deque
-def bfs(graph,start,v):
-    visited=[False]*v
-    queue=deque([start])
-    visited[start]=True
-    result=[]
-    while queue:
-        node=queue.popleft()
-        result.append(f"Visited Node:{node}")
-        for n in graph[node]:
-            if not visited[n]:
-                queue.append(n)
-                visited[n]=True
-    return result;
-def main():
-    v,e=map(int,input().split())
-    graph=[[] for _ in range(v)]
-    for _ in range(e):
-        p1,p2=map(int,input().split())
-        graph[p1].append(p2)
-        graph[p2].append(p1)
-    start_node=int(input())
-    bfs_res=bfs(graph,start_node,v)
-    for node in bfs_res:
-        print(node)
-if __name__=="__main__":
-    main()
+    int even_sum = 0, odd_sum = 0;
+    for (int i = 0; i < n; ++i) {
+        if (i % 2 == 0) {
+            even_sum += weights[i];
+        } else {
+            odd_sum += weights[i];
+        }
+    }
 
+   
+    int possible_ways = 0;
+    int curr_even_sum = 0, curr_odd_sum = 0;
 
-//vertex
-def construct_graph(V, edges):
-    adjacency_list = [[] for _ in range(V)]
-    for x, y in edges:
-        adjacency_list[x].append(y)
-        adjacency_list[y].append(x)
-    for neighbors in adjacency_list:
-        neighbors.sort()
-    return adjacency_list
+    for (int i = 0; i < n; ++i) {
+        if (i % 2 == 0) {
+            even_sum -= weights[i];
+        } else {
+            odd_sum -= weights[i];
+        }
 
-def Print(adjacency_list):
-    for vertex, neighbors in enumerate(adjacency_list):
-        if neighbors:
-            neighbors_str = '->'.join(map(str, neighbors)) + '->'
-        else:
-            neighbors_str = ''
-        print(f"Vertex {vertex}: {neighbors_str}")
+        if (curr_even_sum + odd_sum == curr_odd_sum + even_sum) {
+            possible_ways++;
+        }
 
-def main():
-    V = int(input())
-    E = int(input())
-    edges = []
-    for _ in range(E):
-        x, y = map(int, input().split())
-        edges.append((x, y))
+        if (i % 2 == 0) {
+            curr_even_sum += weights[i];
+        } else {
+            curr_odd_sum += weights[i];
+        }
+    }
+
+    cout << possible_ways << endl;
+
+    return 0;
+}
+....
     
-    adjacency_list = construct_graph(V, edges)
-    Print(adjacency_list)
+def required_barbers(n, arrival, leaving):
+    arrival.sort()
+    leaving.sort()
 
-if __name__ == "__main__":
-    main()
+    barbers = 0
+    max_barbers = 0
+    i, j = 0, 0
+
+    # Sweep line algorithm
+    while i < n:
+        if arrival[i] < leaving[j]:
+            barbers += 1
+            max_barbers = max(max_barbers, barbers)
+            i += 1
+        else:
+            barbers -= 1
+            j += 1
+
+    return max_barbers
+
+n = int(input().strip())
+arrival = list(map(int, input().strip().split()))
+leaving = list(map(int, input().strip().split()))
+
+print(required_barbers(n, arrival, leaving))
+.....
+    
+import java.util.Scanner;
+
+class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in); // Initialize scanner
+        int n = sc.nextInt(); // Read the number of lines to input
+        sc.nextLine(); // Consume the newline character after the integer input
+        
+        for (int i = 0; i < n; i++) {
+            System.out.println(sc.nextLine()); // Read and print each line
+        }
+
+        sc.close(); // Close the scanner
+    }
+}
