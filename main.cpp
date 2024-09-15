@@ -1,98 +1,103 @@
+Q given a set of integer
 
-//seetha
-def read_matrix(n):
-    matrix = []
-    for _ in range(n):
-        row = list(map(int, input().split()))
-        matrix.append(row)
-    return matrix
-
-def print_matrix(matrix):
-    for row in matrix:
-        print(" ".join(map(str, row)))
-
-def matrix_addition(A, B):
-    n = len(A)
-    result = [[A[i][j] + B[i][j] for j in range(n)] for i in range(n)]
-    return result
-
-def matrix_subtraction(A, B):
-    n = len(A)
-    result = [[A[i][j] - B[i][j] for j in range(n)] for i in range(n)]
-    return result
-
-def matrix_multiplication(A, B):
-    n = len(A)
-    result = [[0] * n for _ in range(n)]
-    for i in range(n):
-        for j in range(n):
-            for k in range(n):
-                result[i][j] += A[i][k] * B[k][j]
-    return result
-
-def main():
-    # Read the size of the matrices
-    n = int(input().strip())
-  
-    A = read_matrix(n)
- 
-    B = read_matrix(n)
+def min_subset_sum_difference(arr):
+    n = len(arr)
+    total_sum = sum(arr)
+    # Initialize the DP array
+    dp = [[False] * (total_sum // 2 + 1) for _ in range(n + 1)]
     
-    # Calculate and print matrix addition
-    print("Matrix Addition:")
-    addition_result = matrix_addition(A, B)
-    print_matrix(addition_result)
+    # There is always a subset with sum 0, which is the empty subset
+    for i in range(n + 1):
+        dp[i][0] = True
     
-    # Calculate and print matrix subtraction
-    print("Matrix Subtraction:")
-    subtraction_result = matrix_subtraction(A, B)
-    print_matrix(subtraction_result)
+    # Fill the DP array
+    for i in range(1, n + 1):
+        for j in range(1, total_sum // 2 + 1):
+            if arr[i - 1] <= j:
+                dp[i][j] = dp[i - 1][j] or dp[i - 1][j - arr[i - 1]]
+            else:
+                dp[i][j] = dp[i - 1][j]
     
-    # Calculate and print matrix multiplication
-    print("Matrix Multiplication:")
-    multiplication_result = matrix_multiplication(A, B)
-    print_matrix(multiplication_result)
+    # Find the largest j such that dp[n][j] is True
+    for j in range(total_sum // 2, -1, -1):
+        if dp[n][j]:
+            subset1_sum = j
+            break
+    
+    subset2_sum = total_sum - subset1_sum
+    return abs(subset1_sum - subset2_sum)
 
-if __name__ == "__main__":
-    main()
-
-
-//alexa
+# Read input
 n = int(input().strip())
+arr = list(map(int, input().strip().split()))
+
+# Compute and print the result
+print(min_subset_sum_difference(arr))
 
 
-elements = list(map(int, input().strip().split()))
 
 
-target = int(input().strip())
 
-if target in elements:
-    print(f"{target} is found in the list")
-else:
-    print(f"{target} is not found in the list")
+
+Q The puzzle
+
+def egg_drop(n, k):
+    # Initialize a DP table with (n+1) rows and (k+1) columns
+    dp = [[0] * (k + 1) for _ in range(n + 1)]
+
+    # If we have only one egg, we need to try all floors
+    for j in range(1, k + 1):
+        dp[1][j] = j
+
+    # Fill the table for more than one egg
+    for i in range(2, n + 1):
+        for j in range(1, k + 1):
+            dp[i][j] = float('inf')
+            for x in range(1, j + 1):
+                # Max of two cases: egg breaks or it doesn't break
+                result = 1 + max(dp[i - 1][x - 1], dp[i][j - x])
+                if result < dp[i][j]:
+                    dp[i][j] = result
+
+    return dp[n][k]
+
+# Read input values
+n, k = map(int, input().strip().split())
+
+# Compute and print the result
+print(egg_drop(n, k))
+
+
+
+
+
+
+Q given a list of non negative
+
+def min_merge_operations_to_palindrome(arr):
+    n = len(arr)
+    left = 0
+    right = n - 1
+    merge_operations = 0
     
-//avre
-#include <stdio.h>
+    while left < right:
+        if arr[left] == arr[right]:
+            left += 1
+            right -= 1
+        elif arr[left] < arr[right]:
+            arr[left + 1] += arr[left]
+            left += 1
+            merge_operations += 1
+        else:
+            arr[right - 1] += arr[right]
+            right -= 1
+            merge_operations += 1
+            
+    return merge_operations
 
-int main() {
-    int m, n;
-    scanf("%d %d", &m, &n);
-    if (m != n) {
-        printf("Matrix is not square.\n");
-        return 1;
-    }
-    int matrix[m][n];
-    for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++) {
-            scanf("%d", &matrix[i][j]);
-        }
-    }
-    int sum = 0;
-    
-    for(int i = 0;i < m;i++){
-        sum += matrix[i][i];
-    }
-    printf("%d\n",sum);
-    
-    return 0;
-}
+# Read input
+n = int(input().strip())
+arr = [int(input().strip()) for _ in range(n)]
+
+# Compute and print the result
+print(min_merge_operations_to_palindrome(arr))
